@@ -81,7 +81,9 @@ export default function Home() {
                 <DealsOfTheDaysSlider sliderData={DealsOfTheDaysMock}/>
             </Section>
 
-
+            <Section className="m-[auto]">
+                <BottomSlider/>
+            </Section>
         </>
     )
 }
