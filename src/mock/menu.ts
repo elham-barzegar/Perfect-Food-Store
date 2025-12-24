@@ -2,21 +2,21 @@ export const menuMock = [
     {
         title: "Hot Deals",
         icon: "icon-flame",
-        a: "#"
+        link: "#"
     },
     {
         title: "Home",
         icon: "",
-        a: "#"
+        link: "#"
     },
     {
         title: "Food",
         icon: "",
-        a: "#"
+        link: "#"
     },
     {
         title: "Vegetables",
         icon: "",
-        a: "#"
+        link: "#"
     }
 ]

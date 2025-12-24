@@ -3,55 +3,55 @@ export const browsCategoriesMock = [
         icon: "icon-drinks-1",
         iconPath: 5,
         title : "Wines & Drinks",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-dress-1",
         iconPath: 4,
         title : "Clothing & beauty",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-crab-1",
         iconPath: 9,
         title : "Pet Foods & Toy",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-pet-food-1",
         iconPath: 8,
         title : "Pet Foods & Toy",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-sweet-1",
         iconPath: 7,
         title : "Fast food",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-dairy-products-1",
         iconPath: 5,
         title : "Baking material",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-grocery-1",
         iconPath: 7,
         title : "Vegetables",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-fruit-1",
         iconPath: 3,
         title : "Fresh Fruit",
-        a: "#"
+        link: "#"
     },
     {
         icon: "icon-milk-products-1",
         iconPath: 5,
         title : "Bread and Juice",
-        a: "#"
+        link: "#"
     },
 
 ]

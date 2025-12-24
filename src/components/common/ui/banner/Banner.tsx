@@ -25,7 +25,7 @@ export function Banner({title, subtitle, bgImage, image}: Props) {
                 <ImageView src={image} className="m-w-[50%]" alt={'banner'} width={717} height={538}/>
             </div>
             <form name="subscription" method="post" action="#" className="flex lg:hidden gap-2.5 items-center justify-between rounded-[30px] mx-auto max-w-[550px] bg-[#F5F5F5] pl-4 sm:pl-5 md:pl-6 mt-4 sm:mt-5 md:mt-6">
-                <IconBox icon={"icon-paper-plane"} size={24} a={'#'}/>
+                <IconBox icon={"icon-paper-plane"} size={24} link={'#'}/>
                 <input type="email" name="email" placeholder="Your email address" className="font-lato text-xsmall sm:grow focus:outline-none bg-transparent" />
                 <input type="submit" value="subscribe" className="text-white hover:bg-green-300 bg-green-200 rounded-[30px] px-[18px] py-2 cursor-pointer text-heading-sm leading-5 md:text-heading6" />
             </form>

@@ -1,10 +1,11 @@
 import {IconBox, ImageView, Logo} from "@/components";
+import Link from "next/link";
 
 export function Footer() {
     //TODO fix mobile menu
     return (
-        <footer className="container mb-[68px]">
-            <div className="mb-[68px]">
+        <footer className="container mb-[68px] m-[auto]">
+            <div className="mb-[68px] m-['auto']">
                 <div className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative">
                     <div className="min-h-[160px] pl-3 pt-3 sm:pl-4 sm:pt4 md:pl-6 md:pt-6 lg:pl-10 lg:py-10 xl:pl-14 xl:py-14 2xl:py-[72px] 2xl:pl-[72px]">
                         <h2 className="max-w-[60%] text-heading5 sm:text-heading4 md:text-heading3 lg:text-heading2 tracking-[-0.04%] text-blue-300">Stay home & get your daily needs from our shop</h2>
@@ -41,13 +42,13 @@ export function Footer() {
                         <IconBox icon={"icon-down-dark inline-block sm:hidden"} size={24}/>
                     </div>
                     <ul className="hidden md:flex flex-col gap-2.5">
-                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><a href="#">About Us</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Delivery Information</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Privacy Policy</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Terms & Conditions</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Contact Us</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Support Center</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Careers</a></li>
+                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">About Us</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Delivery Information</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Privacy Policy</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Terms & Conditions</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Contact Us</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Support Center</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Careers</Link></li>
                     </ul>
                 </div>
                 <div className="pt-4 md:pt-0">
@@ -56,20 +57,20 @@ export function Footer() {
 
                     </div>
                     <ul className="hidden md:flex flex-col gap-2.5">
-                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><a href="#">Search Terms</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Advanced Search</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Help & FAQ's</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Store Location</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Orders & Returns</a></li>
-                        <li className="font-lato text-medium text-blue-300"><a href="#">Feedback for us</a></li>
+                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">Search Terms</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Advanced Search</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Help & FAQ's</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Store Location</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Orders & Returns</Link></li>
+                        <li className="font-lato text-medium text-blue-300"><Link href="#">Feedback for us</Link></li>
                     </ul>
                 </div>
                 <div className="pt-4 md:pt-0">
                     <div className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300">App & Payment</div>
                     <div className="font-lato text-small text-blue-300 mt-4 lg:mt-6">Install NetMart App from App Store or Google Play</div>
                     <div className="flex items-center gap-6 justify-center xl:justify-start pt-4 lg:pt-5">
-                        <a href="#"><ImageView src="/assets/images/va724oeh 1.png" alt="Download app from apple store" width={129} height={39} /></a>
-                        <a href="#"><ImageView src="/assets/images/17kw6njp 1.png" alt="Download app from google play" width={129} height={39} /></a>
+                        <Link href="#"><ImageView src="/assets/images/va724oeh 1.png" alt="Download app from apple store" width={129} height={39} /></Link>
+                        <Link href="#"><ImageView src="/assets/images/17kw6njp 1.png" alt="Download app from google play" width={129} height={39} /></Link>
                     </div>
                     <div className="font-lato text-small text-blue-300 text-center lg:text-left pt-4 lg:pt-5">Secured Payment Gateways</div>
                     <div className="flex justify-center xl:justify-start pt-4 lg:pt-5">

@@ -1,4 +1,5 @@
 import {Badge, IconBox, ImageView, Rating} from "@/components";
+import Link from "next/link";
 
 interface Props {
     data: {
@@ -34,7 +35,7 @@ export function SimpleProductCard({data}: Props) {
             <ImageView src={data.image} className="m-auto w-full aspect-[3/2] mb-[28px]" alt={'product'} width={210} height={168}/>
             <div className="flex flex-col gap-2">
                 <div className="text-gray-500 text-xsmall">{data.category}</div>
-                <a href={"#"}> <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data.title}</h3></a>
+                <Link href={"#"}> <h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data.title}</h3></Link>
                 <div className="flex gap-4">
                     <Rating rate={data.rate}/>
                 </div>

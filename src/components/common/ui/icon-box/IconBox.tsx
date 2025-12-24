@@ -1,24 +1,26 @@
+import Link from "next/link";
+
 interface props {
     icon: string;
     size: number;
-    a?: string;
+    link?: string;
     title?: string;
     hideTitleOnMobile?: boolean;
     badge?: number;
     titleClassName?: string;
     path?: number;
-    aClassName?: string;
+    linkClassName?: string;
 }
 
-export function IconBox({icon, size = 22, a, title, hideTitleOnMobile = false, badge = 0, titleClassName = '', path = 0, aClassName = ''}: props) {
+export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false, badge = 0, titleClassName = '', path = 0, linkClassName = ''}: props) {
 
     let span = [];
     for (let i = 1; i <= path; i++) {
         span.push(<span className={`path${i}`}></span>)
     }
-    if (a) {
+    if (link) {
         return (
-            <a className={`flex items-center cursor-pointer ${aClassName}`} href={a ?? '#'}>
+            <Link className={`flex items-center cursor-pointer ${linkClassName}`} href={link ?? '#'}>
                 {
                     badge ?
                         <div className="relative">
@@ -30,7 +32,7 @@ export function IconBox({icon, size = 22, a, title, hideTitleOnMobile = false, b
                 }
 
                 {title && <div className={`ml-1 ${hideTitleOnMobile ? 'hidden xl:inline-block' : 'inline-block'} ${titleClassName}`}>{title}</div>}
-            </a>
+            </Link>
         );
 
     } else {
