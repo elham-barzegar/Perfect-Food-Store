@@ -3,9 +3,14 @@ import {IconBox} from "@/components";
 import{browsCategoriesMock} from "@/mock/browsCategory";
 import {menuMock} from "@/mock/menu";
 import Link from "next/link";
+import {useQuery} from "@tanstack/react-query";
+import {getMenuApiCall} from "@/api/Menu";
 
 export function Menu() {
     //TODO load menu data from api
+
+    const {data: menuData} = useQuery({queryKey:[getMenuApiCall.name], queryFn: () => getMenuApiCall()})
+    console.log(menuData)
     return (
         <>
             <div id="all_categories" className="flex relative cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
