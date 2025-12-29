@@ -1,13 +1,6 @@
 import {
-    Banner,
-    BestSellersSlider,
-    BottomSlider,
-    DealsOfTheDaysSlider,
-    FeaturedCategories,
-    IconBox,
-    MiniProductSlider,
-    Section,
-    SimpleProductSlider
+    Banner, BestSellersSlider, BottomSlider,
+    DealsOfTheDaysSlider, FeaturedCategories, IconBox, MiniProductSlider, Section, SimpleProductSlider
 } from "@/components"
 import {popularProducts} from "@/mock/PopularProducts";
 import {popularFruits} from "@/mock/PopularFruits";
@@ -15,15 +8,18 @@ import {BestSellers} from "@/mock/BestSellers";
 import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
 import Link from "next/link";
 import {getAllProductsApiCall} from "@/api/config/Product";
-import {useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductType} from "@/types/api/product";
+import {AppProps} from "next/app";
+import {getMenuApiCall} from "@/api/Menu";
 
-export default function Home() {
+export default function Home(){
 
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductType>>({
         queryKey: [getAllProductsApiCall.name, 'popular_product'],
-        queryFn: () => getAllProductsApiCall({populate: ["categories", "thumbnail"], filters: {is_popular: {$eq: true}}})
+        queryFn: () => getAllProductsApiCall({populate: ["categories", "thumbnail"], filters: {is_popular: {$eq: true}}}),
+        // initialData: props.products
     })
     // console.log(popularProductsData);
 
@@ -137,4 +133,24 @@ export default function Home() {
             </Section>
         </>
     )
+}
+
+export async function getServerSideProps() {
+    const queryClient = new QueryClient()
+
+    await queryClient.prefetchQuery({
+        queryKey: [getMenuApiCall.name],
+        queryFn: getMenuApiCall,
+    })
+
+
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name, 'popular_product'],
+        queryFn: ()=> getAllProductsApiCall({populate: ["categories", "thumbnail"], filters: {is_popular: {$eq: true}}}),
+    })
+
+    // const products = await getAllProductsApiCall({populate: ["categories", "thumbnail"], filters: {is_popular: {$eq: true}}});
+
+
+    return {props: { dehydratedState: dehydrate(queryClient) } }
 }
