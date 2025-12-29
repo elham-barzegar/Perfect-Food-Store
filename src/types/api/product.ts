@@ -15,11 +15,11 @@ export interface ProductType {
     is_popular: boolean
     is_top_selling: boolean
     is_trending: boolean
-    SKU?: string
-    label?: string
+    SKU: string | null
+    label: string | null
     unit: string
-    total?: any
-    sold?: any
+    total: number | null
+    sold: number | null
     is_popular_fruit?: boolean
     is_best_seller?: boolean
     thumbnail?: {
