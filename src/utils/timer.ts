@@ -2,7 +2,10 @@ export const timerHelper = (end: string) => {
     const endDate = new Date(end).getTime();
     const currentDate =(new Date).getTime();
 
-    const timeRemaining = endDate - currentDate;
+    // console.log("c", currentDate)
+    // console.log(endDate)
+
+    const timeRemaining = currentDate - endDate ;
 
     const timeobj = {
         days: 0,

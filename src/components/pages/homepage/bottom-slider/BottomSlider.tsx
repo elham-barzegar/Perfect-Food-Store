@@ -5,6 +5,7 @@ import {TopSellingMock} from "@/mock/TopSelling";
 import {TrendingProductsMock} from "@/mock/TrendingProducts";
 import {RecentlyAddedMock} from "@/mock/RecentlyAdded";
 import {TopRatedMock} from "@/mock/TopRated";
+import {InView} from "react-intersection-observer";
 
 interface Props {
     
@@ -45,7 +46,9 @@ export function BottomSlider({}: Props) {
             </SwiperSlide>
 
             <SwiperSlide>
+                <InView as="div" onChange={(inView, entry) => console.log("Inview:", inView)}>
                 <ProductVerticalList title={'Top Rated'} data={TopRatedMock}/>
+                </InView>
             </SwiperSlide>
 
         </Swiper>

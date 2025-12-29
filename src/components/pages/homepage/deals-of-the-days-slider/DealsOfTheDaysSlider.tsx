@@ -1,9 +1,11 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import {ProductDealsCard} from "@/components";
+import {ProductType} from "@/types/api/product";
+import {EntityType} from "@/types";
 
 interface Props {
-    sliderData: Array<any>;
+    sliderData: Array<EntityType<ProductType>>;
 }
 
 export function DealsOfTheDaysSlider({sliderData}: Props) {

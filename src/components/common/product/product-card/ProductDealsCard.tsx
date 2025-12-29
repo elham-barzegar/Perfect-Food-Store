@@ -1,8 +1,10 @@
 import {ImageView, Rating} from "@/components";
 import {useEffect, useState} from "react";
 import {timerHelper} from "@/utils/timer";
+import {EntityType} from "@/types";
+import {ProductType} from "@/types/api/product";
 
-interface Props {
+{/*interface Props {
     data: {
         title: string;
         image: string;
@@ -15,6 +17,10 @@ interface Props {
         label: string;
         dead_line: string;
     }
+}  */}
+
+interface Props {
+    data: EntityType<ProductType>
 }
 
 export function ProductDealsCard({data}: Props) {
@@ -27,7 +33,7 @@ export function ProductDealsCard({data}: Props) {
 
     useEffect(() =>{
         const interval = setInterval(() =>{
-           const timerObj = timerHelper(data.dead_line);
+           const timerObj = timerHelper(data.attributes.discount_expire_date);
             setRemainTime(timerObj)
         },1000);
         return () =>{
@@ -37,7 +43,7 @@ export function ProductDealsCard({data}: Props) {
 
     return (
         <div className="relative h-[438px]">
-            <ImageView src={data.image} className="w-full" width={378} height={335} alt={'product'}/>
+            <ImageView src={data.attributes.thumbnail?.data?.attributes.url} className="w-full" width={378} height={335} alt={'product'}/>
             <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[195px]">
                 <div className="timer1 flex items-center gap-3 h-[60px]">
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">
@@ -58,22 +64,22 @@ export function ProductDealsCard({data}: Props) {
                     </div>
                 </div>
                 <div className="bg-white mt-2.5 px-8 pt-6 pb-4 rounded-[10px] shadow-c-xs">
-                    <div className="text-heading-sm text-blue-300">{data.title}</div>
+                    <div className="text-heading-sm text-blue-300">{data.attributes.title}</div>
                     <div className="flex w-[106px] justify-between h-4 items-center mt-1">
                         <div className="flex gap-4">
-                          <Rating rate={data.rate}/>
+                          <Rating rate={data.attributes.rate}/>
                         </div>
                     </div>
-                    <div className="font-lato text-xsmall text-gray-500 mt-1">{data.rate} {data.unit}</div>
+                    <div className="font-lato text-xsmall text-gray-500 mt-1">{data.attributes.weight} {data.attributes.unit}</div>
                     <div className="flex items-center justify-between mt-3">
                         {
-                            data.sale_price ?
+                            data.attributes.sell_price ?
                                 <div>
-                                    <span className="text-heading5 text-green-200">${data.sale_price}</span>
-                                    <span className="text-heading-sm line-through text-gray-500">${data.price}</span>
+                                    <span className="text-heading5 text-green-200">${data.attributes.sell_price}</span>
+                                    <span className="text-heading-sm line-through text-gray-500">${data.attributes.price}</span>
                                 </div>
                                 :
-                                <span className="text-heading5 text-green-200">${data.price}</span>
+                                <span className="text-heading5 text-green-200">${data.attributes.price}</span>
                         }
                         <div className="add-product">
                             <button className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds +</button>
