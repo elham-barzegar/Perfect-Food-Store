@@ -3,6 +3,8 @@ import {IconBox, Logo, Menu, SearchForm} from "@/components";
 import Link from "next/link";
 import {useState} from "react";
 import {useOverlay} from "@/hooks/use-overlay";
+import LoginModal from "@/components/common/auth/LoginModal";
+import {RegisterModal} from "@/components/common/auth/RegisterModal";
 
 export function Header() {
 
@@ -25,11 +27,16 @@ export function Header() {
         e.stopPropagation()
     }
 
+    const[showModal, setShowModal] = useState<"login" | "register" | null>(null);
+    const onCloseHandler = () => {
+        setShowModal(null);
+    }
 
 
     return (
         <header className="mb-[33px] m-[auto] justify-items-center">
-
+            {showModal === "login" && <LoginModal onClose={onCloseHandler} setShowModal={setShowModal}/> }
+            {showModal === "register" && <RegisterModal onClose={onCloseHandler} /> }
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                 <Logo/>
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
@@ -37,7 +44,7 @@ export function Header() {
                 <SearchForm inputClassName={'py-[15px]'}/>
                 </div>
                 <ul className="hidden lg:flex gap-5">
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer" onClick={()=> {setShowModal("login")}}>
                         <IconBox icon={'icon-user'} size={24} title={'Account'} link={'#'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
