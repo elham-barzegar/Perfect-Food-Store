@@ -1,7 +1,7 @@
 import React from "react";
-import {IconBox, ImageView, Logo, Menu, SearchForm} from "@/components";
+import {IconBox, Logo, Menu, SearchForm} from "@/components";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useOverlay} from "@/hooks/use-overlay";
 
 export function Header() {
@@ -29,6 +29,7 @@ export function Header() {
 
     return (
         <header className="mb-[33px] m-[auto] justify-items-center">
+
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                 <Logo/>
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
