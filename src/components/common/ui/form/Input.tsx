@@ -2,7 +2,7 @@ import React, {useId} from 'react'
 import {UseFormRegisterReturn, FieldErrors} from "react-hook-form";
 import {ErrorMessage} from "@/components";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLInputElement> {
     type?: "text" | "password" | "email" | "number" | "tel";
     label?: string;
     placeholder?: string;

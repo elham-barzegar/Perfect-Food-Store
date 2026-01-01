@@ -12,6 +12,7 @@ import {QueryClient} from "@tanstack/react-query";
 import {ToastContainer} from "react-toastify";
 import {useState} from "react";
 import {ModalContextProvider} from "@/store/ModalContext";
+import {BasketContextProvider} from "@/store/BasketContext";
 
 
 const quicksand = Quicksand({
@@ -46,6 +47,7 @@ export default function App({Component, pageProps}: AppProps) {
                 }
             `}</style>
             <QueryClientProvider client={queryClient} >
+                <BasketContextProvider>
                 <HydrationBoundary state={pageProps.dehydratedState}>
                     <ModalContextProvider>
                     <div id={"portal"}></div>
@@ -55,6 +57,7 @@ export default function App({Component, pageProps}: AppProps) {
                 </Layout>
                     </ModalContextProvider>
                 </HydrationBoundary>
+                </BasketContextProvider>
             </QueryClientProvider>
         </>
     )

@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react'
+import React from 'react'
 import Modal from "../ui/modal/Modal";
 import {useModal} from "@/store/ModalContext";
 interface Props {
@@ -12,7 +12,7 @@ export const LoginModal = ({onClose}: Props) => {
     return (
         <Modal closeModal={onClose} title={"login"}>
             <form></form>
-            <span onClick={()=> {openModal('register')}} className={"cursor-pointer"}>Go To Register Modal</span>
+            <span onClick={()=> {openModal('register')}} className={"cursor-pointer mx-auto  bg-blue-100 px-8 py-2 rounded font-bold"}>Go To Register Modal</span>
         </Modal>
     )
 }
