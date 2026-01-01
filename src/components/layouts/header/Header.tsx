@@ -6,10 +6,13 @@ import {useOverlay} from "@/hooks/use-overlay";
 import {LoginModal} from "@/components/common/auth/LoginModal";
 import {RegisterModal} from "@/components/common/auth/RegisterModal";
 import {useModal} from "@/store/ModalContext";
+import {BasketContext} from "@/store/BasketContext";
 
 export function Header() {
 
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+
+    const basket = useContext(BasketContext);
 
     const {currentModal, openModal, closeModal} = useModal();
 
@@ -48,7 +51,7 @@ export function Header() {
                         <IconBox icon={'icon-user'} size={24} title={'Account'} link={'#'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
-                        <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'} link={'#'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'} badge={5}/>
+                        <IconBox icon={'icon-shopping-cart'} size={24} title={'Card'} link={'#'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'} badge={basket.basketItems.length}/>
                     </li>
                 </ul>
                 <button onClick={menuBtnClickHandler}  id="menu_btn" className="flex flex-col justify-between py-[4px] lg:hidden w-[24px] h-[24px]">
