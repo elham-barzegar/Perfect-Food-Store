@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useContext, useReducer, useState} from "react";
 import {ProductType} from "@/types/api/product";
 import {EntityType} from "@/types";
 
@@ -32,59 +32,91 @@ export const BasketContext = createContext<{
 
 })
 
+
+type Action = {type:"ADD_ITEM", product: EntityType<ProductType>}
+            | {type:"DELETE_ITEM", productId: number}
+            | {type:"INCREMENT_ITEM", productId: number}
+            | {type:"DECREMENT_ITEM", productId: number}
+
+
+const basketReducer = (currentState: ProductItem[], action: Action) => {
+
+    switch (action.type) {
+        case "ADD_ITEM":
+            return [
+                ...currentState,
+                {
+                    productId: action.product.id,
+                    title: action.product.attributes.title,
+                    img: action.product.attributes.thumbnail?.data?.attributes.url,
+                    price: action.product.attributes.price,
+                    quantity: 1
+                }
+            ]
+
+
+        case "INCREMENT_ITEM":
+            return  currentState.map((item)=> item.productId === action.productId ? { ...item, quantity: item.quantity + 1 } : item)
+
+
+
+        case "DECREMENT_ITEM":
+
+            const currentProduct = currentState.find(item => item.productId === action.productId);
+            if (currentProduct && currentProduct.quantity === 1) {
+                //     remove
+                return  currentState.filter((item) => item.productId !== action.productId);
+            }
+               return  currentState.map((item)=>{
+                    if (item.productId === action.productId)
+                        return { ...item, quantity: item.quantity - 1 }
+                    return item;
+                })
+
+
+
+        case "DELETE_ITEM":
+            return   currentState.filter((item) => item.productId !== action.productId);
+
+            default:
+                return currentState;
+
+    }
+
+
+}
+
+
+
 export const BasketContextProvider = (props: Props) => {
-    const[basketItems, setBasketItems] = useState<Array<ProductItem>>([]);
+    // const[basketItems, setBasketItems] = useState<Array<ProductItem>>([]);
+    const [basketItems, dispatch] = useReducer(basketReducer, []);
 
 
     const addItemHandler = (product: EntityType<ProductType>) => {
 
-        const newProduct: ProductItem = {
-            productId: product.id,
-            title: product.attributes.title,
-            img: product.attributes.thumbnail?.data?.attributes.url,
-            price: product.attributes.price,
-            quantity: 1
-        }
-
-        setBasketItems(prevState => [
-            ...prevState,
-            newProduct
-        ])
+       dispatch({type:"ADD_ITEM", product: product});
     }
 
 
     const deleteItemHandler = (productId: number) => {
-        const newBasket = basketItems.filter((item) => item.productId !== productId);
-        setBasketItems(newBasket);
+        dispatch({type:"DELETE_ITEM", productId: productId} )
     }
 
 
     const incrementItemHandler = (productId: number) => {
-        const newBasket = basketItems.map((item)=>{
-            if (item.productId === productId)
-            return { ...item, quantity: item.quantity + 1 }
-            return item;
-        })
-            setBasketItems(newBasket);
+
+          dispatch({type:"INCREMENT_ITEM", productId: productId});
     }
+
 
 
     const decrementItemHandler = (productId: number) => {
-        const currentProduct = basketItems.find(item => item.productId === productId);
-        if (currentProduct && currentProduct.quantity === 1) {
-        //     remove
-            deleteItemHandler(productId);
-        } else {
-            const newBasket = basketItems.map((item)=>{
-                if (item.productId === productId)
-                    return { ...item, quantity: item.quantity - 1 }
-                return item;
-            })
-            setBasketItems(newBasket);
-        }
 
-
+            dispatch({type:"DECREMENT_ITEM", productId: productId });
     }
+
+
 const getItemHandler = (productId: number) : ProductItem | undefined => {
         return  basketItems.find(item => item.productId === productId);
 }
