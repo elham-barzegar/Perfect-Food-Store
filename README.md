@@ -6,6 +6,7 @@ A modern and responsive food store web application built with Next.js, React, Ty
 
 https://food-store-sooty.vercel.app/
 
+![Project Preview](./fshop.png)
 
 ## 📌 Overview
 
